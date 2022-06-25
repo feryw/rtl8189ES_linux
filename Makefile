@@ -53,7 +53,7 @@ CONFIG_SDIO_HCI = y
 CONFIG_GSPI_HCI = n
 ########################## Features ###########################
 CONFIG_MP_INCLUDED = y
-CONFIG_POWER_SAVING = y
+CONFIG_POWER_SAVING = n
 CONFIG_IPS_MODE = default
 CONFIG_LPS_MODE = default
 CONFIG_USB_AUTOSUSPEND = n
@@ -250,7 +250,9 @@ _HAL_INTFS_FILES :=	hal/hal_intf.o \
 
 
 EXTRA_CFLAGS += -I$(src)/platform
-_PLATFORM_FILES := platform/platform_ops.o
+#_PLATFORM_FILES := platform/platform_ops.o
+_PLATFORM_FILES := platform/platform_ingenic_sdio.o
+
 
 EXTRA_CFLAGS += -I$(src)/hal/btc
 
