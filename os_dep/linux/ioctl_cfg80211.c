@@ -451,8 +451,13 @@ u8 rtw_cfg80211_ch_switch_notify(_adapter *adapter, u8 ch, u8 bw, u8 offset,
 	ret = rtw_chbw_to_cfg80211_chan_def(wiphy, &chdef, ch, bw, offset, ht);
 	if (ret != _SUCCESS)
 		goto exit;
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6,3, 0))
+        if (started) {
+	        cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, 0, 0);
+	        goto exit;
+	}
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
+#elif (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
 	if (started) {
 		cfg80211_ch_switch_started_notify(adapter->pnetdev, &chdef, 0);
 		goto exit;
