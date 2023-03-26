@@ -10263,6 +10263,7 @@ static int rtw_priv_mp_get(struct net_device *dev,
 		RTW_INFO("set MP_DPK\n");
 		status = rtw_mp_dpk(dev, info, wdata, extra);
 		break;
+		__attribute__((__fallthrough__));
 	default:
 		status = -EIO;
 	}
