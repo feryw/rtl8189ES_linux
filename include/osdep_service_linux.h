@@ -219,7 +219,7 @@ typedef void *timer_hdl_context;
 	#define DMA_BIT_MASK(n) (((n) == 64) ? ~0ULL : ((1ULL<<(n))-1))
 #endif
 
-#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 15, 0))
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 251))
 /* Porting from linux kernel commits 
 48eab831ae8b9f7002a533fa4235eed63ea1f1a3 
 3f6cffb8604b537e3d7ea040d7f4368689638eaf
