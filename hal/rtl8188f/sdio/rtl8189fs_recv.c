@@ -427,12 +427,9 @@ s32 rtl8188fs_init_recv_priv(PADAPTER padapter)
 	rtw_pwctx_config(&precvpriv->recvbuf_pwait, CONFIG_SDIO_RECVBUF_PWAIT_CONF_ARGS);
 
 	/* 3 2. init tasklet */
-#ifdef PLATFORM_LINUX
 	tasklet_init(&precvpriv->recv_tasklet,
-		     (void(*)(unsigned long))rtl8188fs_recv_tasklet,
+		     (void *)rtl8188fs_recv_tasklet,
 		     (unsigned long)padapter);
-#endif
-
 	goto exit;
 
 initbuferror:
