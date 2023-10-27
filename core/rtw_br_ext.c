@@ -182,7 +182,7 @@ static __inline__ void __nat25_generate_ipx_network_addr_with_node(unsigned char
 	memcpy(networkAddr + 1, (unsigned char *)ipxNetAddr, 4);
 	memcpy(networkAddr + 5, ipxNodeAddr, 6);
 }
-
+#endif
 
 static __inline__ void __nat25_generate_ipx_network_addr_with_socket(unsigned char *networkAddr,
 		unsigned int *ipxNetAddr, unsigned short *ipxSocketAddr)
@@ -193,7 +193,6 @@ static __inline__ void __nat25_generate_ipx_network_addr_with_socket(unsigned ch
 	memcpy(networkAddr + 1, (unsigned char *)ipxNetAddr, 4);
 	memcpy(networkAddr + 5, (unsigned char *)ipxSocketAddr, 2);
 }
-#endif
 
 static __inline__ void __nat25_generate_apple_network_addr(unsigned char *networkAddr,
 		unsigned short *network, unsigned char *node)
