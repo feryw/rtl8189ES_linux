@@ -15,6 +15,7 @@
 #define _RECV_OSDEP_C_
 
 #include <drv_types.h>
+#include <linux/version.h>
 
 int rtw_os_recvframe_duplicate_skb(_adapter *padapter, union recv_frame *pcloneframe, _pkt *pskb)
 {
@@ -405,7 +406,7 @@ static int napi_recv(_adapter *padapter, int budget)
 			So, we should prevent cloned SKB go into napi_gro_receive.
 		*/
 		if (pregistrypriv->en_gro && !skb_cloned(pskb)) {
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 12, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 12, 0))
 			if (rtw_napi_gro_receive(&padapter->napi, pskb) != GRO_DROP)
 				rx_ok = _TRUE;
 #else
@@ -418,7 +419,7 @@ static int napi_recv(_adapter *padapter, int budget)
 		if (rtw_netif_receive_skb(padapter->pnetdev, pskb) == NET_RX_SUCCESS)
 			rx_ok = _TRUE;
 
-next:
+		next:
 		if (rx_ok == _TRUE) {
 			work_done++;
 			DBG_COUNTER(padapter->rx_logs.os_netif_ok);
